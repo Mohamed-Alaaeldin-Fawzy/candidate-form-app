@@ -1,0 +1,197 @@
+<form
+  class="p-4 flex flex-col gap-4 shadow-md border rounded-xl w-full"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 class="text-3xl text-gray-700 font-semibold self-center p-4">
+    Candidate Form
+  </h1>
+  <div
+    class="flex flex-col sm:flex-row w-full justify-between gap-1 sm:gap-4 items-center"
+  >
+    <div class="flex flex-col gap-1 sm:w-auto w-full">
+      <label for="firstName"
+        >First name <span class="text-red-600 text-xl text-bold">*</span></label
+      >
+      <input
+        type="text"
+        formControlName="firstName"
+        name="firstName"
+        id="firstName"
+        class="outline-none focus:outline-none border rounded py-2 px-4 ring-blue-500 focus:ring-2"
+        [ngClass]="{
+          'ring-red-600 ring-2': firstName?.touched && firstName?.invalid
+        }"
+      />
+      <div
+        *ngIf="firstName?.touched && firstName?.invalid"
+        class="text-red-600 text-xs"
+      >
+        <div *ngIf="firstName?.errors?.['required']">
+          First Name is required
+        </div>
+        <div *ngIf="firstName?.errors?.['minlength']">
+          First Name must be at least 2 characters
+        </div>
+        <div *ngIf="firstName?.errors?.['maxlength']">
+          First Name cannot be more than 50 characters
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col gap-1 sm:w-auto w-full">
+      <label for="lastName"
+        >Last name <span class="text-red-600 text-xl text-bold">*</span></label
+      >
+      <input
+        type="text"
+        formControlName="lastName"
+        name="lastName"
+        id="lastName"
+        class="outline-none focus:outline-none border rounded py-2 px-4 ring-blue-500 focus:ring-2"
+        [ngClass]="{
+          'ring-red-600 ring-2': lastName?.touched && lastName?.invalid
+        }"
+      />
+      <div
+        *ngIf="lastName?.touched && lastName?.invalid"
+        class="text-red-600 text-xs"
+      >
+        <div *ngIf="lastName?.errors?.['required']">Last Name is required</div>
+        <div *ngIf="lastName?.errors?.['minlength']">
+          Last Name must be at least 2 characters long
+        </div>
+        <div *ngIf="lastName?.errors?.['maxlength']">
+          Last Name cannot be more than 50 characters long
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-1 w-full">
+    <label for="email"
+      >Email <span class="text-red-600 text-xl text-bold">*</span></label
+    >
+    <input
+      type="email"
+      formControlName="email"
+      name="email"
+      id="email"
+      class="outline-none focus:outline-none border rounded py-2 px-4 ring-blue-500 focus:ring-2"
+      [ngClass]="{ 'ring-red-600 ring-2': email?.touched && email?.invalid }"
+    />
+    <div *ngIf="email?.touched && email?.invalid" class="text-red-600 text-xs">
+      <div *ngIf="email?.errors?.['required']">Email is required</div>
+      <div *ngIf="email?.errors?.['email']">
+        Email must be a valid email address
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex w-full justify-between items-start gap-1 sm:gap-4 flex-col sm:flex-row"
+  >
+    <div class="flex flex-col gap-1 sm:w-auto w-full">
+      <label for="phoneNumber">Phone number</label>
+      <input
+        type="tel"
+        formControlName="phoneNumber"
+        name="phoneNumber"
+        id="phoneNumber"
+        class="outline-none focus:outline-none border rounded py-2 px-4 focus:ring-2 ring-blue-500"
+        [ngClass]="{
+          'ring-red-600 ring-2': phoneNumber?.touched && phoneNumber?.invalid
+        }"
+      />
+      <div
+        *ngIf="phoneNumber?.touched && phoneNumber?.invalid"
+        class="text-red-600 text-xs"
+      >
+        <div *ngIf="phoneNumber?.errors?.['pattern']">
+          Phone number must be a valid number
+        </div>
+      </div>
+    </div>
+    <app-date-picker (dateChange)="onDateChange($event)"></app-date-picker>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="linkedInUrl">LinkedIn profile</label>
+    <input
+      type="url"
+      formControlName="linkedInUrl"
+      name="linkedInUrl"
+      id="linkedInUrl"
+      class="outline-none focus:outline-none border rounded py-2 px-4 ring-blue-500 focus:ring-2"
+      [ngClass]="{
+        'ring-red-600 ring-2': linkedInUrl?.touched && linkedInUrl?.invalid
+      }"
+    />
+    <div
+      *ngIf="linkedInUrl?.touched && linkedInUrl?.invalid"
+      class="text-red-600 text-sm"
+    >
+      <div *ngIf="linkedInUrl?.errors?.['pattern']">
+        LinkedIn profile must be a valid URL
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="githubUrl">GitHub profile</label>
+    <input
+      type="url"
+      formControlName="githubUrl"
+      name="githubUrl"
+      id="githubUrl"
+      class="outline-none focus:outline-none border rounded py-2 px-4 ring-blue-500 focus:ring-2"
+      [ngClass]="{
+        'ring-red-600 ring-2': githubUrl?.touched && githubUrl?.invalid
+      }"
+    />
+    <div
+      *ngIf="githubUrl?.touched && githubUrl?.invalid"
+      class="text-red-600 text-sm"
+    >
+      <div *ngIf="githubUrl?.errors?.['pattern']">
+        GitHub profile must be a valid URL
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="comment"
+      >Comment <span class="text-red-600 text-xl text-bold">*</span></label
+    >
+    <textarea
+      formControlName="comments"
+      name="comments"
+      id="comments"
+      class="outline-none focus:outline-none border rounded py-2 px-4 ring-blue-500 focus:ring-2"
+      [ngClass]="{
+        'ring-red-600 ring-2': comments?.touched && comments?.invalid
+      }"
+    ></textarea>
+    <div
+      *ngIf="comments?.touched && comments?.invalid"
+      class="text-red-600 text-sm"
+    >
+      <div *ngIf="comments?.errors?.['required']">Comments is required</div>
+      <div *ngIf="comments?.errors?.['minlength']">
+        Comments must be at least 10 characters long
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="px-6 py-2 text-white rounded-md"
+    [ngClass]="{
+      'bg-gray-200 cursor-not-allowed': form.invalid || form.disabled,
+      'bg-blue-500 cursor-pointer hover:bg-blue-600':
+        !form.invalid && !form.disabled
+    }"
+    type="submit"
+    [disabled]="form.invalid || form.disabled"
+  >
+    Submit
+  </button>
+</form>

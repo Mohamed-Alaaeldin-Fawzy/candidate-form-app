@@ -1,27 +1,63 @@
-# CandidateFrontend
+# Candidate Form Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
+This is an Angular application that provides a form for candidate submissions. The form includes fields for the candidate's first name, last name, email, phone number, time to call, LinkedIn profile, GitHub profile, and a comment section. The application is built with standalone components.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Features](#features)
+- [Form Validation](#form-validation)
 
-## Code scaffolding
+## Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Make sure you have the following installed:
 
-## Build
+- Node.js (>= 12.0.0)
+- Angular CLI (>= 12.0.0)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+1. Clone the repository:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```bash
+   git clone https://github.com/Mohamed-Alaaeldin-Fawzy/candidate-form-app.git
+   cd candidate-form-app
+   ```
 
-## Running end-to-end tests
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Running the Application
 
-## Further help
+To run the application locally, use:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+ng serve
+```
+
+## Features
+
+- Angular reactive forms
+- Form validation
+- Standalone component architecture
+
+## Form Validation
+
+#### The form includes the following validation rules:
+
+- First Name: Required, minimum length of 2, maximum length of 50.
+- Last Name: Required, minimum length of 2, maximum length of 50.
+- Email: Required, valid email format.
+- Phone Number: Optional, must be a valid phone number if provided.
+- Time to Call: Optional.
+- LinkedIn Profile: Optional, must be a valid URL if provided.
+- GitHub Profile: Optional, must be a valid URL if provided.
+- Comment: Required, minimum length of 10.
+
+## API Service
+
+The application includes a service to make POST request to `http://localhost/candidate` to add new candidate or update an existing one.
